@@ -21,10 +21,8 @@ RUN mkdir /etc/ansible/ /ansible
 RUN echo "[local]" >> /etc/ansible/hosts && \
     echo "localhost" >> /etc/ansible/hosts
 
-RUN \
-  curl -fsSL https://github.com/ansible/ansible/archive/v2.1.1.0-1.tar.gz -o ansible.tar.gz && \
-  tar -xzf ansible.tar.gz -C ansible --strip-components 1 && \
-  rm -fr ansible.tar.gz /ansible/docs /ansible/examples /ansible/packaging
+RUN pip install ansible==2.1.0.0
+RUN pip install certifi flatdict
 
 RUN mkdir -p /ansible/playbooks
 WORKDIR /ansible/playbooks
